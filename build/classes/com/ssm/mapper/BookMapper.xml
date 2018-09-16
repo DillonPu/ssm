@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.BookMapper">
+	<insert id="addBook" parameterType="com.ssm.pojo.Book" >
+		insert into ssm_book(id, name,detail,userId) values(#{id},#{name},#{detail},#{userId})
+	</insert>
+	
+	<delete id="deleteBookById" parameterType="Integer">
+		delete from ssm_book where id = #{id}"
+	</delete>
+	
+	<select id="findBookById" parameterType="Integer" resultType="com.ssm.pojo.Book">
+		select * from ssm_book where id = #{id}
+	</select>
+	
+	<select id="findBooksByKeyname" parameterType="String" resultType="com.ssm.pojo.Book">
+		select * from ssm_book where name = "%"#{value}"%"
+	</select>
+	
+	<update id="editBookInformationById" parameterType="Integer">
+		update ssm_book 
+		set name=#{name},detail=#{detail},userId=#{userId}
+		where id=#{id}
+	</update>
+	
+	<select id="findBooksByUserId" parameterType="Integer" resultType="com.ssm.pojo.Book">
+		select * from ssm_book where userId = #{value}
+	</select>
+</mapper>
